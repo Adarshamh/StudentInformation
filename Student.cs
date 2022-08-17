@@ -6,16 +6,26 @@ using System.Threading.Tasks;
 
 namespace StudentInformation
 {
+
     public class Student
     {
+
+        #region variables
+
+        public string fname = string.Empty;
+        public string lname = string.Empty;
+
+        #endregion variables
+
+
         #region property Injection
 
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public int RollNo { get; set; }
+        public int Age { get; set; }
         public DateTime AdmissionDate { get; set; }
         public bool IsUG { get; set; }
-        public string? IsPG { get; set; }
+        public string IsPG { get; set; }
 
         #endregion property Injection
 
@@ -31,56 +41,17 @@ namespace StudentInformation
 
 
         /////Passing one parameter
-        public Student(string firstname)
+        public Student(string sfname)
         {
-            FirstName = firstname;
+            fname = sfname;
         }
 
 
         /////Passing two parameters
-        public Student(string firstname, string lastname)
+        public Student(string sfname, string slname)
         {
-            FirstName = firstname;
-            LastName = lastname;
-        }
-
-
-        ////////passing three parameters
-        public Student(string firstname, string lastname, int rollno)
-        {
-            FirstName = firstname;
-            LastName = lastname;
-            RollNo = rollno;
-        }
-
-        ////////Passing four parameters
-        public Student(string firstname, string lastname, int rollno, DateTime admissiondate)
-        {
-            FirstName = firstname;
-            LastName = lastname;
-            RollNo = rollno;
-            AdmissionDate = admissiondate;
-        }
-
-        ////////Passing five parameters
-        public Student(string firstname, string lastname, int rollno, DateTime admissiondate, bool ug)
-        {
-            FirstName = firstname;
-            LastName = lastname;
-            RollNo = rollno;
-            AdmissionDate = admissiondate;
-            IsUG = ug;
-        }
-
-        ////////Passing six parameters
-        public Student(string firstname, string lastname, int rollno, DateTime admissiondate, bool ug, String pg)
-        {
-            FirstName = firstname;
-            LastName = lastname;
-            RollNo = rollno;
-            AdmissionDate = admissiondate;
-            IsUG = ug;
-            IsPG = pg;
+            fname = sfname;
+            lname = slname;
         }
 
         #endregion constructor
@@ -89,31 +60,62 @@ namespace StudentInformation
 
         #region method
 
-        /////creating method
-        /* public void displaystudentdetails(string firstname, string lastname, int rollno, DateTime admissiondate, bool ug)
-         {
-             Console.WriteLine("Firstname:->" + firstname + "Lastname:->"+ lastname + "Rollno:->" + rollno + "Admission Date:->" + admissiondate + "IsUG:->"+ ug);
-         }*/
+        public void displayfl()
+        {
+            Console.WriteLine("Firstname:->" + fname + " Lastname:->" + lname );
+        }
 
-        ///insted of writing whole thing like above we just take student as an object inside method for below method
+        public string displaystringfl()
+        {
+            string val = fname + "  " + lname ;
+            return val;
+        }
 
         public void displaystudentdetails(Student student)
         {
             Console.WriteLine("Firstname:->" + student.FirstName);
             Console.WriteLine("Lastname:->" + student.LastName);
-            Console.WriteLine("Rollno:->" + student.RollNo);
-            Console.WriteLine("Admission Date:" + student.AdmissionDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine("Age:->" + student.Age);
+            Console.WriteLine("AdmissionDate:->" + student.AdmissionDate.ToString("dddd, dd MMMM yyyy"));
             Console.WriteLine("IsUG:->" + student.IsUG);
             Console.WriteLine("IsPG:->" + student.IsPG);
         }
 
-        public void studentisinug(Student student)
+        public void studentanug(Student student)
         {
-            if (student.IsUG)
-                Console.Write("Firstname:" + student.FirstName + ",Lastname:" + student.LastName + ",Is in UG");
+            /* if (student.IsUG)
+                 Console.WriteLine(" Firstname:-> " + student.FirstName + " Lastname:-> " + student.LastName + " an UG ");
+             else
+                 Console.WriteLine(" Firstname:-> " + student.FirstName + " Lastname:-> " + student.LastName + " not an UG ");*/
+
+            bool IsUG = (student.IsUG) && (student.IsPG.Equals("No"));
+
+            if (IsUG)
+                Console.WriteLine(" Firstname:-> " + student.FirstName + " Lastname:-> " + student.LastName + " an UG ");
             else
-                Console.WriteLine("Firstname:" + student.FirstName + ",Lastname:" + student.LastName + ",Is not in UG");
+                Console.WriteLine(" Firstname:-> " + student.FirstName + " Lastname:-> " + student.LastName + " an PG ");
         }
+
+        public void studentagelimit(Student student)
+        {
+           
+            if (student.Age < 24)
+                Console.WriteLine(" Firstname:->" + student.FirstName + " Lastname:-> " + student.LastName + " an UG ");
+            else
+                Console.WriteLine(" Firstname:->" + student.FirstName + " Lastname:-> " + student.LastName + " an PG ");
+        }
+
+        public void studentYearlimitonDate(Student student)
+        {
+
+            if (student.Age < 24)
+                Console.WriteLine(" Firstname:->" + student.FirstName + " Lastname:-> " + student.LastName + " an UG ");
+            else
+                Console.WriteLine(" Firstname:->" + student.FirstName + " Lastname:-> " + student.LastName + " an PG ");
+        }
+
+
+
         #endregion method
     }
 }
